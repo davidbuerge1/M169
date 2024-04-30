@@ -58,7 +58,7 @@ volumes:  # Definition von Volumes für die Anwendung
 
 ```
 
-# Secrets in Docker-Compose
+## Secrets in Docker-Compose
 
 Wenn aus Sicherheitsgründen Passwörter nicht in der `docker-compose`-Datei angegeben werden sollen, können Secrets verwendet werden. Das Top-Level-Schlüsselwort gibt an, wo sich die Passwortdatei befindet. Die Einträge bei den Services referenzieren dann die Top-Level-Definition.
 
@@ -82,3 +82,27 @@ secrets:
     file: db_root_password.txt
 ```
 Die in MYSQL_ROOT_PASSWORD_FILE und MYSQL_PASSWORD_FILE angegebenen Dateien innerhalb des Containers enthalten dann die in den unter dem Top-Level-Schlüsselwort secrets angegebenen Passwörter. Die verfügbaren Secretsvariablen müssen in der Dokumentation zu einem Image auf Dockerhub nachgeschlagen werden.
+
+## Anwendung
+```markdown
+Wenn die `docker-compose.yml` Datei angelegt ist, wechseln Sie in dieses Verzeichnis:
+
+```bash
+cd myapp
+```
+
+und können die ganze Applikation mit
+
+```bash
+docker-compose up -d
+```
+
+starten (-d für Daemon, bewirkt dass die Applikation im Hintergrund gestartet wird) und mit
+
+```bash
+docker-compose down
+```
+
+wieder beenden.
+
+Im Idealfall läuft alles gut. Wenn jedoch ein Fehler auftritt, empfiehlt es sich `docker-compose up` ohne das `-d` auszuführen. Die Loggingausgaben aller Container erfolgen dann direkt auf der Konsole.
