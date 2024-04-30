@@ -84,7 +84,7 @@ secrets:
 Die in MYSQL_ROOT_PASSWORD_FILE und MYSQL_PASSWORD_FILE angegebenen Dateien innerhalb des Containers enthalten dann die in den unter dem Top-Level-Schlüsselwort secrets angegebenen Passwörter. Die verfügbaren Secretsvariablen müssen in der Dokumentation zu einem Image auf Dockerhub nachgeschlagen werden.
 
 ## Anwendung
-```markdown
+
 Wenn die `docker-compose.yml` Datei angelegt ist, wechseln Sie in dieses Verzeichnis:
 
 ```bash
