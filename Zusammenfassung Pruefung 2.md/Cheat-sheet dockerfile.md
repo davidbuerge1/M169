@@ -32,3 +32,54 @@ Folgender Befehl um das Image zu löschen.
 ```Bash
 docker rmi meine-webseite-image -f
 ```
+
+## Bsp Dockerfile:
+
+```Dockerfile
+# Set base image
+FROM ubuntu:latest
+
+# Set environment variables
+ENV APP_HOME=/app
+ENV PORT=8080
+
+# Set working directory
+WORKDIR $APP_HOME
+
+# Copy files from the project directory to the image
+COPY . $APP_HOME
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip
+
+# Set a label
+LABEL maintainer="Your Name <your.email@example.com>"
+
+# Expose port
+EXPOSE $PORT
+
+# Set user
+USER nobody
+
+# Define entrypoint
+ENTRYPOINT ["python3", "app.py"]
+
+# Define command
+CMD ["--debug"]
+```
+
+In diesem Beispiel:
+
+- `FROM`: Gibt das Basis-Image (Ubuntu) an.
+- `ENV`: Setzt Umgebungsvariablen für das Arbeitsverzeichnis und den Port.
+- `WORKDIR`: Legt das Arbeitsverzeichnis fest.
+- `COPY`: Kopiert Dateien aus dem Projektverzeichnis in das Image.
+- `RUN`: Führt das Installieren von Python und Pip aus.
+- `LABEL`: Legt eine Beschreibung für das Image fest.
+- `EXPOSE`: Gibt den aktiven Port an.
+- `USER`: Legt den Benutzer fest, der die folgenden Befehle ausführt.
+- `ENTRYPOINT`: Führt das angegebene Kommando (hier Python-App) beim Container-Start aus.
+- `CMD`: Gibt zusätzliche Argumente für das Entry Point-Kommando an.
+
